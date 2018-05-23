@@ -8,9 +8,9 @@
           </div>
           <form>
             <div class="input-field">
-              <i class="material-icons prefix">email</i>
-              <input id="email" type="email" v-model="email">
-              <label for="email">信箱</label>
+              <i class="material-icons prefix">smartphone</i>
+              <input id="ph_no" type="text" v-model="phNo">
+              <label for="ph_no">號碼</label>
             </div>
             <div class="input-field">
               <i class="material-icons prefix">lock</i>
@@ -33,16 +33,19 @@
     name: "login",
     data: function(){
       return {
-        email: "",
+        phNo: "",
         password: ""
       }
     },
     methods: {
       login: function(e){
-        firebase.auth().signInWithEmailAndPassword(this.email,this.password)
+        let countryCode = "+886"
+        let email = countryCode + this.phNo.substring(1) + "@nqu.com"
+
+        firebase.auth().signInWithEmailAndPassword(email,this.password)
           .then(
             user => {
-              alert(user.email+"歡迎!你已登入網頁")
+              alert(user.phoneNumber+"歡迎!你已登入網頁")
               this.$router.go({path: this.$router.path})
             },
             err => {

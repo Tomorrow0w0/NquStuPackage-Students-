@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Dashboard from '@/components/Dashboard'
-import NewStu from '@/components/NewStu'
-import QrScanner from '@/components/QrScanner'
-import ViewStu from '@/components/ViewStu'
-import EditStu from '@/components/EditStu'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
+import HomList from '@/components/HomeList/HomeList'
+import AddList from '@/components/AddList/AddList'
+import ViewList from '@/components/ViewList/ViewList'
+import EditList from '@/components/EditList/EditList'
+import Login from '@/components/Login/Login'
+import PhoneSignUp from '@/components/PhoneAuth/PhoneSignUp'
+import PhoneSetPassword from '@/components/PhoneAuth/PhoneSetPassword'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -15,8 +15,8 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'dashboard',
-      component: Dashboard,
+      name: 'home-list',
+      component: HomList,
       meta: {
         requiresAuth: true
       }
@@ -30,41 +30,41 @@ let router = new Router({
       }
     },
     {
-      path: '/register',
-      name: 'register',
-      component: Register,
+      path: '/phonesignup',
+      name: 'phonesignup',
+      component: PhoneSignUp,
       meta: {
         requiresGuest: true
       }
     },
     {
-      path: '/new',
-      name: 'new-stu',
-      component: NewStu,
+      path: '/phonesetpassword',
+      name: 'phonesetpassword',
+      component: PhoneSetPassword,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/qrscanner',
-      name: 'qrscanner',
-      component: QrScanner,
+      path: '/add',
+      name: 'add-list',
+      component: AddList,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/:stu_id',
-      name: 'view-stu',
-      component: ViewStu,
+      path: '/:pg_No?',
+      name: 'view-list',
+      component: ViewList,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/edit/:stu_id',
-      name: 'edit-stu',
-      component: EditStu,
+      path: '/edit/:pg_No?',
+      name: 'edit-list',
+      component: EditList,
       meta: {
         requiresAuth: true
       }
@@ -89,7 +89,7 @@ router.beforeEach((to, from, next)=>{
       // 繼續路由
       next()
     }
-  // 檢查是否為訪客
+    // 檢查是否為訪客
   }else if(to.matched.some(record => record.meta.requiresGuest)){
     // Check if Logged in
     if(firebase.auth().currentUser){
@@ -111,4 +111,3 @@ router.beforeEach((to, from, next)=>{
 })
 
 export default router
-

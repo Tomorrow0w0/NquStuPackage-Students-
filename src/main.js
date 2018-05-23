@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import firbase from 'firebase'
-import './components/firebaseInit'
+import './components/FirebaseLink/FirebaseInit'
 
 Vue.config.productionTip = false
 

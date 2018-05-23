@@ -1,5 +1,5 @@
 <template>
-  <div id="new-stu">
+  <div id="add-list">
     <h3>新增學生</h3>
     <div class="row">
       <form @submit.prevent="saveStudent" class="col s12">
@@ -65,9 +65,9 @@
 </template>
 
 <script>
-  import db from "./firebaseInit"
+  import db from "../FirebaseLink/FirebaseInit"
   export default {
-    name: "new-stu",
+    name: "add-list",
     data(){
       return {
         "stu_id": null,
@@ -94,8 +94,8 @@
           "info": this.info,
           "qr": this.qr
         })
-        .then(docRef => this.$router.push("/"))
-        .catch(error => console.log(error))
+          .then(docRef => this.$router.push("/"))
+          .catch(error => console.log(error))
       }
     }
   };
