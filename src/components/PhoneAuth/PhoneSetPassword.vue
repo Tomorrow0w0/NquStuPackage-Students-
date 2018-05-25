@@ -50,6 +50,7 @@
             () => {
             Updateuser.updatePassword(newPassword).then(
               () => {
+
               alert("成功註冊!")
               _this.$router.go(0)
               _this.$router.push('/')
